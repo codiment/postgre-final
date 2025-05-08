@@ -1,8 +1,8 @@
 -- CreateEnum
-CREATE TYPE "OrganizationMemberRole" AS ENUM ('MANAGER', 'REGULAR');
+CREATE TYPE "OrganizationMemberRole" AS ENUM ('MEMBER', 'REGULAR');
 
 -- CreateEnum
-CREATE TYPE "Role" AS ENUM ('USER', 'ADMIN');
+CREATE TYPE "UserType" AS ENUM ('USER', 'ADMIN');
 
 -- CreateTable
 CREATE TABLE "User" (
@@ -14,7 +14,7 @@ CREATE TABLE "User" (
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "password" TEXT NOT NULL,
-    "role" "Role" NOT NULL DEFAULT 'USER',
+    "type" "UserType" NOT NULL DEFAULT 'USER',
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
@@ -33,6 +33,7 @@ CREATE TABLE "OrganizationMembership" (
     "id" TEXT NOT NULL,
     "organizationId" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
+    "role" "OrganizationMemberRole" NOT NULL DEFAULT 'MEMBER',
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "OrganizationMembership_pkey" PRIMARY KEY ("id")

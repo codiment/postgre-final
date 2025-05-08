@@ -14,7 +14,7 @@ async function main() {
                     firstname: 'John',
                     lastname: 'Doe',
                     password: 'qwerty',
-                    role: 'USER',
+                    type: 'USER',
                     telephone: '1234567890',
                 }
             })
@@ -25,7 +25,7 @@ async function main() {
                     firstname: 'Jane',
                     lastname: 'Doe',
                     password: 'qwerty',
-                    role: 'USER',
+                    type: 'USER',
                     telephone: '1234567890',
                 }
             });
