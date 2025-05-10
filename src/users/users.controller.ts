@@ -1,4 +1,14 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Req } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  UseGuards,
+  Req,
+} from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -6,7 +16,6 @@ import { UserEntity } from './entities/user.entity';
 import { ApiCreatedResponse } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { AutheticatedRequest } from 'src/interfaces/authenticated-user.inferface';
-
 
 @Controller('users')
 export class UsersController {
@@ -19,10 +28,10 @@ export class UsersController {
   }
 
   @Get()
-  @ApiCreatedResponse({ type: UserEntity, isArray: true  })
+  @ApiCreatedResponse({ type: UserEntity, isArray: true })
   @UseGuards(JwtAuthGuard)
-  findAll(@Req() req : AutheticatedRequest) {
-    req.user
+  findAll(@Req() req: AutheticatedRequest) {
+    req.user;
     return this.usersService.findAll();
   }
 
