@@ -1,4 +1,4 @@
-import { UserType, User } from 'generated/prisma';
+import { UserType, User } from "@prisma/client";
 import { ApiProperty } from '@nestjs/swagger';
 
 type UserWithoutPassword = Omit<User, 'password'>;

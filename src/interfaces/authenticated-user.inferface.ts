@@ -1,4 +1,4 @@
-import { UserType } from 'generated/prisma';
+import { UserType } from "@prisma/client";
 
 export interface AutheticatedRequest extends Request {
   user: {

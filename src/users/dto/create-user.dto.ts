@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { UserType } from 'generated/prisma';
+import { UserType } from '@prisma/client';
 
 export class CreateUserDto {
   @ApiProperty({ required: true })
