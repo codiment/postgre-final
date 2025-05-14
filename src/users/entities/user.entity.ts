@@ -1,6 +1,7 @@
-import { UserType, User } from "@prisma/client";
+import { UserType, User } from "generated/prisma";
 import { ApiProperty } from '@nestjs/swagger';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 type UserWithoutPassword = Omit<User, 'password'>;
 
 export class UserEntity {
