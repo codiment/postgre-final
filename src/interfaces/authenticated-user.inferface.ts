@@ -1,4 +1,4 @@
-import { UserType } from 'generated/prisma';
+import { OrganizationMemberRole, UserType } from 'generated/prisma';
 
 export interface AutheticatedRequest extends Request {
   user: {
