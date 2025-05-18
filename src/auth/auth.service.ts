@@ -8,13 +8,16 @@ export class AuthService {
   constructor(
     private jwtService: JwtService,
     private prisma: PrismaService,
-  ) {}
+  ) { }
 
   async validateUser(user: LoginDto) {
     const foundUser = await this.prisma.user.findUnique({
       where: {
         email: user.email,
       },
+      include: {
+        memberships: true,
+      }
     });
 
     if (!foundUser) return null;
@@ -24,6 +27,10 @@ export class AuthService {
         id: foundUser.id,
         email: foundUser.email,
         type: foundUser.type,
+        orgs: foundUser.memberships.map((org) => ({
+          id: org.organizationId,
+          role: org.role,
+        })),
       });
     }
   }

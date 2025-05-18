@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PrismaModule } from './prisma/prisma.module';
@@ -7,7 +8,13 @@ import { AuthModule } from './auth/auth.module';
 import { OrganizationModule } from './organization/organization.module';
 
 @Module({
-  imports: [PrismaModule, UsersModule, AuthModule, OrganizationModule],
+  imports: [
+    ConfigModule.forRoot(),
+    PrismaModule, 
+    UsersModule, 
+    AuthModule, 
+    OrganizationModule
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
