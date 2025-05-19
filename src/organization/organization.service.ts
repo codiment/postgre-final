@@ -5,9 +5,11 @@ import { OrganizationDto } from './dto/organization.dto';
 
 @Injectable()
 export class OrganizationService {
-  constructor(private prisma: PrismaService) { }
+  constructor(private prisma: PrismaService) {}
 
-  async create(CreateOrganizationDto: CreateOrganizationDto): Promise<OrganizationDto> {
+  async create(
+    CreateOrganizationDto: CreateOrganizationDto,
+  ): Promise<OrganizationDto> {
     const organization = await this.prisma.organization.create({
       data: CreateOrganizationDto,
     });

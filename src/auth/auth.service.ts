@@ -8,7 +8,7 @@ export class AuthService {
   constructor(
     private jwtService: JwtService,
     private prisma: PrismaService,
-  ) { }
+  ) {}
 
   async validateUser(user: LoginDto) {
     const foundUser = await this.prisma.user.findUnique({
@@ -17,7 +17,7 @@ export class AuthService {
       },
       include: {
         memberships: true,
-      }
+      },
     });
 
     if (!foundUser) return null;
