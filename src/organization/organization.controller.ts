@@ -6,7 +6,7 @@ import { OrganizationDto } from './dto/organization.dto';
 
 @Controller('organization')
 export class OrganizationController {
-  constructor(private readonly organizationService: OrganizationService) { }
+  constructor(private readonly organizationService: OrganizationService) {}
 
   @Post()
   @ApiResponse({ status: 201, type: OrganizationDto })
