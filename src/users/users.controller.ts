@@ -13,17 +13,18 @@ import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserEntity } from './entities/user.entity';
-import { ApiCreatedResponse } from '@nestjs/swagger';
+import { ApiCreatedResponse, ApiResponse } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { AuthenticatedRequest } from '../interfaces/authenticated-user.inferface';
 import { OrganizationRoleGuard } from 'src/auth/guards/organization-manager.guard';
 import { OrganizationMemberRole } from 'generated/prisma'
 import { AdminGuard } from 'src/auth/guards/admin.guard';
 import { Roles } from '../auth/decorators/roles.decorator';
+import { UserDto } from './dto/user.dto';
 
 @Controller('users')
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(private readonly usersService: UsersService) { }
 
   @Post()
   @ApiCreatedResponse({ type: UserEntity })
@@ -59,8 +60,14 @@ export class UsersController {
     return this.usersService.remove(id);
   }
 
-
-
-
+  @UseGuards(OrganizationRoleGuard)
+  @Roles(OrganizationMemberRole.MANAGER)
+  @Get('organization/:organizationId')
+  @ApiResponse({ status: 200, type: [UserDto] })
+  async getUsersByOrganizationId(
+    @Param('organizationId') organizationId: string,
+  ) {
+    return this.usersService.getUserByOrganizationId(organizationId);
+  }
 
 }

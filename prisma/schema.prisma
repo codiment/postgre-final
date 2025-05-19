@@ -25,7 +25,7 @@ model User {
   password  String
 
   memberships OrganizationMembership[]
-  type        UserType                 @default(USER)
+  type        UserType                @default(USER)
 }
 
 model Organization {
@@ -40,7 +40,7 @@ model OrganizationMembership {
   id             String                 @id @default(uuid())
   organizationId String
   userId         String
-  role           OrganizationMemberRole @default(MEMBER)
+  role           OrganizationMemberRole @default(MANAGER)
   createdAt      DateTime               @default(now())
 
   user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -50,7 +50,7 @@ model OrganizationMembership {
 }
 
 enum OrganizationMemberRole {
-  MEMBER
+  MANAGER
   REGULAR
 }
 
