@@ -1,8 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
-import { ExtractJwt, Strategy } from 'passport-jwt';
-
-ExtractJwt.fromAuthHeaderAsBearerToken();
+import { Strategy, ExtractJwt } from 'passport-jwt';
+import { LoggedInUserData } from 'src/interfaces/authenticated-user.inferface';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
@@ -13,11 +12,13 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       secretOrKey: 'qwerty',
     });
   }
-  async validate(payload: any) {
+
+  async validate(payload: LoggedInUserData) {
     return {
-      userId: payload.id,
+      id: payload.id,
       email: payload.email,
-      role: payload.role,
+      type: payload.type,
+      orgs: payload.orgs,
     };
   }
 }

@@ -150,6 +150,39 @@
         ]
       }
     },
+    "/users/organization/{organizationId}": {
+      "get": {
+        "operationId": "UsersController_getUsersByOrganizationId",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Users"
+        ]
+      }
+    },
     "/auth/login": {
       "post": {
         "operationId": "AuthController_login",
@@ -319,6 +352,60 @@
             "default": "USER"
           }
         }
+      },
+      "UserDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "e2999283-96bf-4504-b751-f66bb7b9456b"
+          },
+          "email": {
+            "type": "string",
+            "example": "john.doe@email.com"
+          },
+          "telephone": {
+            "type": "string",
+            "example": "1234567890"
+          },
+          "firstName": {
+            "type": "string",
+            "example": "John"
+          },
+          "lastName": {
+            "type": "string",
+            "example": "Doe"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string",
+            "example": "2025-05-17T21:07:33.320Z"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string",
+            "example": "2025-05-17T21:07:33.320Z"
+          },
+          "password": {
+            "type": "string",
+            "example": "qwerty"
+          },
+          "type": {
+            "type": "string",
+            "example": "USER"
+          }
+        },
+        "required": [
+          "id",
+          "email",
+          "telephone",
+          "firstName",
+          "lastName",
+          "createdAt",
+          "updatedAt",
+          "password",
+          "type"
+        ]
       },
       "LoginDto": {
         "type": "object",

@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "../../generated/prisma";
 
 const prisma = new PrismaClient();
 
@@ -41,7 +41,10 @@ async function main() {
         data: {
           name: 'Test Org',
           memberships: {
-            create: [{ userId: john.id }, { userId: jane.id }],
+            create: [
+              { userId: john.id, role: 'MANAGER' }, // Usar un valor válido según la migración
+              { userId: jane.id, role: 'REGULAR' }  // Usar un valor válido según la migración
+            ],
           },
         },
       });
